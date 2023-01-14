@@ -1,19 +1,19 @@
 version: '3.9'
 services:
-  web:
-    depends_on:
-      - db
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    image: django-k8s:v1
-    environment:
-      - PORT=8020
-    env_file:
-      - web/.env    
-    ports:
-      - "8001:8020"
-    command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
+  # web:
+  #   depends_on:
+  #     - db
+  #   build:
+  #     context: ./web
+  #     dockerfile: Dockerfile
+  #   image: django-k8s:v1
+  #   environment:
+  #     - PORT=8020
+  #   env_file:
+  #     - web/.env    
+  #   ports:
+  #     - "8001:8020"
+  #   command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
   db:
     image: postgres
     command: -p 5434
