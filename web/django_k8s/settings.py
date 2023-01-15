@@ -23,11 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')=='1'
-
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG')=='0'
 
 
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -94,7 +95,7 @@ DB_IS_AVAIL = all([
 DB_IGNORE_SSL=os.environ.get("DB_IGNORE_SSL") == "true"
 DB_READY = os.environ.get("POSTGRES_READY")
 
-if DB_IS_AVAIL:
+if DB_IS_AVAIL and False:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -105,6 +106,10 @@ if DB_IS_AVAIL:
             "PORT": DB_PORT,
         }
     }
+    if not DB_IGNORE_SSL:
+         DATABASES["default"]["OPTIONS"] = {
+            "sslmode": "require"
+         }
     
 
 

@@ -1,5 +1,6 @@
-web/.env
+
 .env
+web/.env.prod
 .env.prod
 web/.env
 .DS_Store
