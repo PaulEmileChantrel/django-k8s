@@ -3,10 +3,7 @@ name: Django CI & Postgres Test
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branch: [main]
-  pull:
-    branch: [main]
+    
 jobs:
   django_test:
     runs-on: ubuntu-latest
